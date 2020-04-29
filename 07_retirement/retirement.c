@@ -1,11 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct{
+struct _retire_info{
   int months;
   double contribution;
   double rate_of_return;
-} retire_info;
+};
+
+typedef struct _retire_info retire_info;
 
 double calc_balance(double initial,double ror,double contribution){
   double val=initial+contribution+(initial*ror);
