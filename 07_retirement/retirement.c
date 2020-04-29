@@ -52,4 +52,5 @@ int main(void){
   int age=327;
   double initial=21345;
   retirement(age,initial,working,retired);
+  return EXIT_STATUS;
 }
