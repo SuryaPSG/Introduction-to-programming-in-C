@@ -1,3 +1,2 @@
-CFLAGS=-Wall -Werror -pedantic -std=gnu99
-%.o:%.c
-	gcc -o ($CFLAGS)  $<
+test: test.c
+	gcc -o test -std=gnu99 -pedantic -Wall -Werror test.c
