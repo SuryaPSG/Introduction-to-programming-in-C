@@ -3,6 +3,9 @@
 #include <string.h>
 
 void reverse(char * str) {
+  if(str==NULL){
+    return;
+  }
   char * begin=str;
   int l=0;
   char t;
@@ -12,9 +15,6 @@ void reverse(char * str) {
   }
   begin=str;
   if(l<=0){
-    return;
-  }
-  if(begin==NULL){
     return;
   }
   for(int i=0;i<l/2;i++){
