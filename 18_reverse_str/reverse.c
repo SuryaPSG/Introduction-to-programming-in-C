@@ -11,6 +11,12 @@ void reverse(char * str) {
     begin++;
   }
   begin=str;
+  if(l<=0){
+    return;
+  }
+  if(begin==NULL){
+    return;
+  }
   for(int i=0;i<l/2;i++){
     t=begin[i];
     begin[i]=begin[l-i-1];
