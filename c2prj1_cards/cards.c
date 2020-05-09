@@ -97,9 +97,7 @@ card_t card_from_letters(char value_let, char suit_let) {
 card_t card_from_num(unsigned c) {
   card_t temp;
   assert(c>=0 && c<52);
-  //13 cards from 2 to ACE value 0,1 not possible so add+2 
-  temp.value=(c%13)+2;
-  //4 suits % 4 will give it
-  temp.suit=c/13;
+  temp.value = (c / 4) + 2;
+  temp.suit = c % 4;
   return temp;
 }
