@@ -113,6 +113,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
       if(!(ptr[i]->value==(ptr[i+1]->value)-1 && ptr[i]->suit==fs && ptr[i+1]->suit==fs))
 	return 0;
     }
+    printf(" - Straight at index %lu",index);
     return 1;
   }
   return 0;
