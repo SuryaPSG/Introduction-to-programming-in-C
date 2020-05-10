@@ -101,24 +101,22 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(n==0)
     return 0;
   card_t **ptr=hand->cards;
-  //int idx=0,lenfind=0;
+  int lf=0;
   if(fs==NUM_SUITS){
     for(int i=index;i<index+len-1;i++){
       if(ptr[i]->value == (ptr[i+1]->value)+1 || ptr[i]->value == ptr[i+1]->value)
-	continue;
-      else
-	return 0;
+	lf+=1;
     }
-    return 1;
+    if(lf==len)
+      return 1;
   }
   else{
     for(int i=index;i<index+len-1;i++){
       if((ptr[i]->value == (ptr[i+1]->value)+1 || ptr[i]->value == ptr[i+1]->value) && ptr[i]->suit==fs && ptr[i+1]->suit==fs)
-	continue;
-      else
-	return 0;
+	lf+=1;
     }
-    return 1;
+    if(lf==len)
+      return 1;
   }
   return 0;
 }
