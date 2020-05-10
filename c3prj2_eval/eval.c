@@ -84,13 +84,11 @@ ssize_t  find_secondary_pair(deck_t * hand,
     return -1;
   card_t ** ptr=hand->cards;
   card_t temp;
-  int index=0;
+  //int index=0;
   for(int i=0;i<n;i++){
     temp=*ptr[i];
-    if(match_counts[i]>1 && (temp.value != (*ptr[match_idx]).value)){
-      index=get_match_index(&match_counts[i],n,match_counts[i]);
-      //if(!(index>=match_idx || index<match_idx+match_counts[i]))
-      return index;
+    if(match_counts[i]>1 && (temp.value != ptr[match_idx]->value)){
+      return i;
     }
   }
   return -1;
