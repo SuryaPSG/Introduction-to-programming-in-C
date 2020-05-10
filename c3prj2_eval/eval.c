@@ -141,10 +141,9 @@ int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
 int is_straight_at(deck_t * hand, size_t index, suit_t fs) {
   if(is_ace_low_straight_at(hand,index,fs))
     return -1;
-  else if(is_n_length_straight_at(hand,index,fs,5))
+  if(is_n_length_straight_at(hand,index,fs,5))
     return 1;
-  else
-    return 0;
+  return 0;
 }
 
 hand_eval_t build_hand_from_match(deck_t * hand,
