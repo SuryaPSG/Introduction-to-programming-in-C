@@ -87,10 +87,10 @@ ssize_t  find_secondary_pair(deck_t * hand,
   int index=0;
   for(int i=0;i<n;i++){
     temp=*ptr[i];
-    if(match_counts[i]>1 && temp.value!=(*ptr[match_idx]).value){
-      index=get_match_index(match_counts,n,match_counts[i]);
-      if(index!=match_idx)
-	return index;
+    if(match_counts[i]>1 && (temp.value != (*ptr[match_idx]).value)){
+      index=get_match_index(&match_counts[i],n,match_counts[i]);
+      //if(!(index>=match_idx || index<match_idx+match_counts[i]))
+      return index;
     }
   }
   return -1;
