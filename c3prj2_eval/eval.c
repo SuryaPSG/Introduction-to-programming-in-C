@@ -102,18 +102,18 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
     return 0;
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
-    for(int i=index+1;i<index+len-1;i++){
+    for(int i=index;i<index+len-1;i++){
       if(ptr[i]->value != (ptr[i+1]->value)-1)
 	return 0;
     }
+    printf(" - Straight at index %lu",index);
     return 1;
   }
   else{
-    for(int i=index+1;i<index+len-1;i++){
+    for(int i=index;i<index+len;i++){
       if(!(ptr[i]->value==(ptr[i+1]->value)-1 && ptr[i]->suit==fs && ptr[i+1]->suit==fs))
 	return 0;
     }
-    printf(" - Straight at index %lu",index);
     return 1;
   }
   return 0;
