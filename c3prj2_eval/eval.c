@@ -16,9 +16,9 @@ int card_ptr_comp(const void * vp1, const void * vp2) {
     return 1;//something >0
   else{
     if(c1.suit<c2.suit)
-      return -1;
-    else if (c1.suit>c2.suit)
       return 1;
+    else if (c1.suit>c2.suit)
+      return -1;
     else
       return 0;
   }
@@ -197,8 +197,8 @@ hand_eval_t build_hand_from_match(deck_t * hand,
 int compare_hands(deck_t * hand1, deck_t * hand2) {
   if(hand1==NULL || hand2==NULL)
     return 0;
-  qsort(hand1->cards,hand1->n_cards,sizeof((hand1->cards)[0]),card_ptr_comp);
-  qsort(hand2->cards,hand2->n_cards,sizeof((hand2->cards)[0]),card_ptr_comp);
+  qsort(hand1->cards,hand1->n_cards,8,card_ptr_comp);
+  qsort(hand2->cards,hand2->n_cards,8,card_ptr_comp);
   hand_eval_t h1=evaluate_hand(hand1);
   hand_eval_t h2=evaluate_hand(hand2);
   if(h1.ranking>h2.ranking)
