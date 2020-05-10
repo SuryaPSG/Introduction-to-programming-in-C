@@ -102,7 +102,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
     return 0;
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
-    for(int i=index;i<index+len-1;i++){
+    for(int i=index;i<index+len-2;i++){
       if(!((*ptr[i]).value==(*ptr[i+1]).value+1 && (*ptr[i]).value==(*ptr[i+1]).value))
 	return 0;
     }
@@ -110,7 +110,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
     return 1;
   }
   else{
-    for(int i=index;i<index+len-1;i++){
+    for(int i=index;i<index+len-2;i++){
       if(!((*ptr[i]).value==(*ptr[i+1]).value+1 && (*ptr[i]).value==(*ptr[i+1]).value))
 	return 0;
     }
