@@ -104,14 +104,18 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   //int idx=0,lenfind=0;
   if(fs==NUM_SUITS){
     for(int i=0;i<n-1;i++){
-      if(!(ptr[i]->value == (ptr[i+1]->value)+1 && ptr[i]->value == ptr[i+1]->value))
+      if(ptr[i]->value == (ptr[i+1]->value)+1 || ptr[i]->value == ptr[i+1]->value)
+	continue;
+      else
 	return 0;
     }
     return 1;
   }
   else{
     for(int i=0;i<n-1;i++){
-      if(!(ptr[i]->value == (ptr[i+1]->value)+1 && ptr[i]->value == ptr[i+1]->value))
+      if(ptr[i]->value == (ptr[i+1]->value)+1 || ptr[i]->value == ptr[i+1]->value)
+	continue;
+      else
 	return 0;
     }
     return 1;
