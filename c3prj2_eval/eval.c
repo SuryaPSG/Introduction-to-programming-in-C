@@ -101,22 +101,39 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(n==0)
     return 0;
   card_t **ptr=hand->cards;
+  int idx=0,lenfind=0;
   if(fs==NUM_SUITS){
-    for(int i=index;i<index+len-1;i++){
-      if(!(ptr[i]->value == (ptr[i+1]->value)+1 && ptr[i]->value == ptr[i+1]->value))
-	return 0;
+    for(int i=0;i<n-1;i++){
+      if((*ptr[i]).value==(*ptr[i+1]).value+1 || (*ptr[i]).value==(*ptr[i+1]).value){
+	lenfind+=1;
+	if(idx==0)
+	  idx=i;
+      }
+      else{
+	lenfind=0;
+	idx=0;
+      }
     }
-    //printf(" - Straight at index %lu",index);
-    return 1;
   }
   else{
-    for(int i=index;i<index+len-1;i++){
-      if(!(ptr[i]->value == (ptr[i+1]->value)+1 && ptr[i]->value == ptr[i+1]->value))
-	return 0;
+    for(int i=0;i<n-1;i++){
+      if(((*ptr[i]).value==(*ptr[i+1]).value+1 || (*ptr[i]).value==(*ptr[i+1]).value) && (*ptr[i]).suit==fs && (*ptr[i+1]).suit==fs ){
+	lenfind+=1;
+	if(idx==0)
+	  idx=i;
+      }
+      else{
+	lenfind=0;
+	idx=0;
+      }
     }
-    return 1;
   }
-  return 0;
+  if(lenfind==len && idx==index)
+    return 1;
+  if(lenfind>len && (index=idx+lenfind-len || idx==index))
+    return 1;
+  else
+    return 0;
 }
 int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
   if(hand==NULL)
