@@ -94,7 +94,7 @@ ssize_t  find_secondary_pair(deck_t * hand,
   return -1;
 }
 int compare_crds(card_t t1,card_t t2){
-  if(t1.value==t2.value+1)
+  if(t1.value==t2.value+1 || t1.value==t2.value)
     return 1;
   return 0;
 }
@@ -252,8 +252,9 @@ void copy_straight(card_t ** to, deck_t *from, size_t ind, suit_t fs, size_t cou
     assert(ind < from->n_cards);
     assert(nextv >= 2);
     assert(to_ind <5);
-    if (from->cards[ind]->value == nextv &&
+    if ((from->cards[ind]->value == nextv || from->cards[ind]->value == nextv+1) &&
 	(fs == NUM_SUITS || from->cards[ind]->suit == fs)){
+      nextv=from->cards[ind]->value;
       to[to_ind] = from->cards[ind];
       to_ind++;
       count--;
