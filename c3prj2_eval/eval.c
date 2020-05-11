@@ -112,7 +112,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   }
   else{
     for(int i=index;i<index+len-1;i++){
-      if((ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value)&& ptr[i]->suit==fs && ptr[i+1]->suit==fs)
+      if((ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value))//&& ptr[i]->suit==fs && ptr[i+1]->suit==fs)
 	continue;
       else
 	return 0;
