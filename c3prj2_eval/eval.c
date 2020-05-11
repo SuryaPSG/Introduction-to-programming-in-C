@@ -98,7 +98,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0)
+  if(n==0 || index>n-1)
     return 0;
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
