@@ -98,12 +98,12 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0 || index>n)
+  if(n==0 || index>n) 
     return 0;
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
     for(int i=index;i<index+len-1;i++){
-      if(i>n-1)
+      if(i==n)
 	return 0;
       else if(ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value){
 	if(i==index+len-2){
@@ -117,7 +117,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   }
   else{
     for(int i=index;i<index+len-1;i++){
-      if(i>n-1)
+      if(i==n)
 	return 0;
       else if((ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value) && ptr[i]->suit==fs && ptr[i+1]->suit==fs){
 	if(i==index+len-2){
@@ -135,7 +135,7 @@ int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0)
+  if(n==0 || index>n)
     return 0;
   card_t **ptr=hand->cards;
   card_t temp=**ptr;
@@ -149,7 +149,7 @@ int is_straight_at(deck_t * hand, size_t index, suit_t fs) {
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0)
+  if(n==0 || index>n)
     return 0;
   if(is_ace_low_straight_at(hand,index,fs))
     return -1;
