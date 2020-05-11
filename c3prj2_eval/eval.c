@@ -93,12 +93,7 @@ ssize_t  find_secondary_pair(deck_t * hand,
   }
   return -1;
 }
-int compare_crds(card_t *t1,card_t *t2){
-  if( t1->value==t2->value+1 || t1->value==t2->value){
-    return 1;
-  }
-  return 0;
-}
+
 int compare_suit(card_t t1,card_t t2,suit_t fs){
   if(t1.suit==fs && t2.suit==fs)
     return 1;
@@ -111,20 +106,29 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(n==0||n<len || index>n|| index+len>n)
     return 0;
   card_t **ptr=hand->cards;
+  int count=0;
   if(fs==NUM_SUITS){
-    for(int i=index;i<index+len-1;i++){
-      if(compare_crds(ptr[i],ptr[i+1])){
-	continue;
+    for(int i=index;i<n-1;i++){
+      if(count==len)
+	break;
+      if(ptr[i]->value==(ptr[i+1]->value+1)){
+	count++;
       }
+      else if(ptr[i]->value==ptr[i+1]->value)
+	continue;
       else
 	return 0;
     }
   }
   else{
-    for(int i=index;i<index+len-1;i++){
-      if(compare_crds(ptr[i],ptr[i+1]) && compare_suit(*ptr[i],*ptr[i+1],fs)){
-	continue;
+    for(int i=index;i<n-1;i++){
+      if(count==len)
+	break;
+      if(ptr[i]->value==(ptr[i+1]->value)+1 && compare_suit(*ptr[i],*ptr[i+1],fs)){
+	count++;
       }
+      else if(ptr[i]->value==ptr[i+1]->value && compare_suit(*ptr[i],*ptr[i+1],fs))
+	continue;
       else
 	return 0;
     }
@@ -247,22 +251,18 @@ unsigned * get_match_counts(deck_t * hand) ;
 //if "fs" is any other value, a straight flush (of that suit) is copied.
 void copy_straight(card_t ** to, deck_t *from, size_t ind, suit_t fs, size_t count) {
   assert(fs == NUM_SUITS || from->cards[ind]->suit == fs);
-  unsigned presv = from->cards[ind]->value;
-  unsigned nextv;
+  unsigned nextv = from->cards[ind]->value;
   size_t to_ind = 0;
   while (count > 0) {
-    nextv=from->cards[ind]->value;
-    if(nextv==presv+1)
-      presv++;
     assert(ind < from->n_cards);
-    assert(presv >= 2);
+    assert(nextv >= 2);
     assert(to_ind <5);
-    if (from->cards[ind]->value == presv &&
+    if (from->cards[ind]->value == nextv &&
 	(fs == NUM_SUITS || from->cards[ind]->suit == fs)){
       to[to_ind] = from->cards[ind];
       to_ind++;
       count--;
-      presv--;
+      nextv--;
     }
     ind++;
   }
