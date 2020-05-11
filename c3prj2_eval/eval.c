@@ -110,7 +110,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(fs==NUM_SUITS){
     for(int i=index;i<n-1;i++){
       if(count==len)
-	break;
+	return 1;
       if(ptr[i]->value==(ptr[i+1]->value+1)){
 	count++;
       }
@@ -123,7 +123,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   else{
     for(int i=index;i<n-1;i++){
       if(count==len)
-	break;
+	return 1;
       if(ptr[i]->value==(ptr[i+1]->value)+1 && compare_suit(*ptr[i],*ptr[i+1],fs)){
 	count++;
       }
@@ -133,7 +133,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
 	return 0;
     }
   }
-  return 1;
+  return 0;
 }
 int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
   if(hand==NULL)
