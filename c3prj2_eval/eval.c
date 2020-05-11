@@ -93,22 +93,26 @@ ssize_t  find_secondary_pair(deck_t * hand,
   }
   return -1;
 }
-
+int compare_crds(card_t t1,card_t t2){
+  if(t1.value==t2.value+1)
+    return 1;
+  return 0;
+}
+int compare_suit(card_t t1,card_t t2,suit_t fs){
+  if(t1.suit==fs && t2.suit==fs)
+    return 1;
+  return 0;
+}
 int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0 || index>n) 
+  if(n==0||n<len || index>n|| index+len>n)
     return 0;
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
     for(int i=index;i<index+len-1;i++){
-      if(i==n)
-	return 0;
-      else if(ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value){
-	if(i==index+len-2){
-	  break;
-	}
+      if(compare_crds(*ptr[i],*ptr[i+1])){
 	continue;
       }
       else
@@ -117,12 +121,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   }
   else{
     for(int i=index;i<index+len-1;i++){
-      if(i==n)
-	return 0;
-      else if((ptr[i]->value==(ptr[i+1]->value)+1 || ptr[i]->value==ptr[i+1]->value) && ptr[i]->suit==fs && ptr[i+1]->suit==fs){
-	if(i==index+len-2){
-	  break;
-	}
+      if(compare_crds(*ptr[i],*ptr[i+1]) && compare_suit(*ptr[i],*ptr[i+1],fs)){
 	continue;
       }
       else
@@ -135,7 +134,7 @@ int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0 || index>n)
+  if(n==0)
     return 0;
   card_t **ptr=hand->cards;
   card_t temp=**ptr;
@@ -149,7 +148,7 @@ int is_straight_at(deck_t * hand, size_t index, suit_t fs) {
   if(hand==NULL)
     return 0;
   int n=hand->n_cards;
-  if(n==0 || index>n)
+  if(n<5 || index>n)
     return 0;
   if(is_ace_low_straight_at(hand,index,fs))
     return -1;
