@@ -93,9 +93,10 @@ ssize_t  find_secondary_pair(deck_t * hand,
   }
   return -1;
 }
-int compare_crds(card_t t1,card_t t2){
-  if(t1.value==t2.value+1 || t1.value==t2.value)
+int compare_crds(card_t *t1,card_t *t2){
+  if( t1->value==t2->value+1 || t1->value==t2->value){
     return 1;
+  }
   return 0;
 }
 int compare_suit(card_t t1,card_t t2,suit_t fs){
@@ -112,7 +113,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   card_t **ptr=hand->cards;
   if(fs==NUM_SUITS){
     for(int i=index;i<index+len-1;i++){
-      if(compare_crds(*ptr[i],*ptr[i+1])){
+      if(compare_crds(ptr[i],ptr[i+1])){
 	continue;
       }
       else
@@ -121,7 +122,7 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   }
   else{
     for(int i=index;i<index+len-1;i++){
-      if(compare_crds(*ptr[i],*ptr[i+1]) && compare_suit(*ptr[i],*ptr[i+1],fs)){
+      if(compare_crds(ptr[i],ptr[i+1]) && compare_suit(*ptr[i],*ptr[i+1],fs)){
 	continue;
       }
       else
@@ -246,19 +247,22 @@ unsigned * get_match_counts(deck_t * hand) ;
 //if "fs" is any other value, a straight flush (of that suit) is copied.
 void copy_straight(card_t ** to, deck_t *from, size_t ind, suit_t fs, size_t count) {
   assert(fs == NUM_SUITS || from->cards[ind]->suit == fs);
-  unsigned nextv = from->cards[ind]->value;
+  unsigned presv = from->cards[ind]->value;
+  unsigned nextv;
   size_t to_ind = 0;
   while (count > 0) {
+    nextv=from->cards[ind]->value;
+    if(nextv==presv+1)
+      presv++;
     assert(ind < from->n_cards);
-    assert(nextv >= 2);
+    assert(presv >= 2);
     assert(to_ind <5);
-    if ((from->cards[ind]->value == nextv || from->cards[ind]->value == nextv+1) &&
+    if (from->cards[ind]->value == presv &&
 	(fs == NUM_SUITS || from->cards[ind]->suit == fs)){
-      nextv=from->cards[ind]->value;
       to[to_ind] = from->cards[ind];
       to_ind++;
       count--;
-      nextv--;
+      presv--;
     }
     ind++;
   }
