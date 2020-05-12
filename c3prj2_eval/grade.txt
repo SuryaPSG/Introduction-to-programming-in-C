@@ -1,4 +1,4 @@
-Grading at Tue May 12 06:41:46 UTC 2020
+Grading at Tue May 12 08:39:05 UTC 2020
 Compiling your code
 rm -f test poker cards.o my-test-main.o *~
 cc -ggdb3 -Wall -Werror -pedantic -std=gnu99   -c -o deck.o deck.c
@@ -24,8 +24,7 @@ Your file matched the expected output
 Testcase 5: Trying hands with straights
  Checking the output 
 Line_118_did_not_match
-Line_128_did_not_match
-Line_131_did_not_match
+Line_133_did_not_match
 Your file did not match the expected ouput
  - Output did not match, testcase failed
 Hand 1:								Hand 1:
@@ -152,13 +151,13 @@ Hand 2:								Hand 2:
 --------							--------
 Jh 0s 9c 8s 7c 6c 5d 						Jh 0s 9c 8s 7c 6c 5d 
  - No flush							 - No flush
- - Straight at index 0					      <
- - Straight at index 1					      <
+ - Straight at index 0						 - Straight at index 0
+ - Straight at index 1						 - Straight at index 1
  - Straight at index 2						 - Straight at index 2
  - The most of a kind is 1 of a kind (at index 0 / value J)	 - The most of a kind is 1 of a kind (at index 0 / value J)
  - No secondary pair						 - No secondary pair
  - evaluate_hand's ranking: STRAIGHT				 - evaluate_hand's ranking: STRAIGHT
- - 5 cards used for hand: Jh 0s 9c 8s 7c 		      |	 - 5 cards used for hand: 9c 8s 7c 6c 5d 
+ - 5 cards used for hand: Jh 0s 9c 8s 7c 			 - 5 cards used for hand: Jh 0s 9c 8s 7c 
 Comparison : 							Comparison : 
 --------------							--------------
 Tie							      |	Hand 2 wins!
@@ -479,9 +478,7 @@ Your file matched the expected output
  - Testcase passed
 Testcase 9: Trying hands with straight flushes
  Checking the output 
-Line_31_did_not_match
-Line_40_did_not_match
-Line_73_did_not_match
+Line_78_did_not_match
 Your file did not match the expected ouput
  - Output did not match, testcase failed
 Hand 1:								Hand 1:
@@ -510,24 +507,24 @@ Hand 1:								Hand 1:
 --------							--------
 As Ks Qs Js 0s 9s 8s 						As Ks Qs Js 0s 9s 8s 
  - Flush in suit s						 - Flush in suit s
- - Straight flush at index 0				      <
- - Straight flush at index 1				      <
+ - Straight flush at index 0					 - Straight flush at index 0
+ - Straight flush at index 1					 - Straight flush at index 1
  - Straight flush at index 2					 - Straight flush at index 2
  - The most of a kind is 1 of a kind (at index 0 / value A)	 - The most of a kind is 1 of a kind (at index 0 / value A)
  - No secondary pair						 - No secondary pair
  - evaluate_hand's ranking: STRAIGHT_FLUSH			 - evaluate_hand's ranking: STRAIGHT_FLUSH
- - 5 cards used for hand: As Ks Qs Js 0s 		      |	 - 5 cards used for hand: Qs Js 0s 9s 8s 
+ - 5 cards used for hand: As Ks Qs Js 0s 			 - 5 cards used for hand: As Ks Qs Js 0s 
 Hand 2:								Hand 2:
 --------							--------
 Kh Qh Jh 0h 9h 8h 7h 						Kh Qh Jh 0h 9h 8h 7h 
  - Flush in suit h						 - Flush in suit h
- - Straight flush at index 0				      <
- - Straight flush at index 1				      <
+ - Straight flush at index 0					 - Straight flush at index 0
+ - Straight flush at index 1					 - Straight flush at index 1
  - Straight flush at index 2					 - Straight flush at index 2
  - The most of a kind is 1 of a kind (at index 0 / value K)	 - The most of a kind is 1 of a kind (at index 0 / value K)
  - No secondary pair						 - No secondary pair
  - evaluate_hand's ranking: STRAIGHT_FLUSH			 - evaluate_hand's ranking: STRAIGHT_FLUSH
- - 5 cards used for hand: Kh Qh Jh 0h 9h 		      |	 - 5 cards used for hand: Jh 0h 9h 8h 7h 
+ - 5 cards used for hand: Kh Qh Jh 0h 9h 			 - 5 cards used for hand: Kh Qh Jh 0h 9h 
 Comparison : 							Comparison : 
 --------------							--------------
 Hand 1 wins!							Hand 1 wins!
@@ -546,7 +543,7 @@ Hand 2:								Hand 2:
 --------							--------
 Ad Kh Qh Jh Js 0h 9h 						Ad Kh Qh Jh Js 0h 9h 
  - Flush in suit h						 - Flush in suit h
- - Straight at index 0					      <
+ - Straight at index 0						 - Straight at index 0
  - Straight flush at index 1					 - Straight flush at index 1
  - The most of a kind is 2 of a kind (at index 3 / value J)	 - The most of a kind is 2 of a kind (at index 3 / value J)
  - No secondary pair						 - No secondary pair
