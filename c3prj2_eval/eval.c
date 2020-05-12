@@ -94,11 +94,6 @@ ssize_t  find_secondary_pair(deck_t * hand,
   return -1;
 }
 
-int compare_suit(card_t t1,card_t t2,suit_t fs){
-  if(t1.suit==fs && t2.suit==fs)
-    return 1;
-  return 0;
-}
 int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   if(hand==NULL)
     return 0;
@@ -108,39 +103,39 @@ int is_n_length_straight_at(deck_t * hand,size_t index,suit_t fs,int len){
   card_t **ptr=hand->cards;
   int count=1;
   if(fs==NUM_SUITS){
-    for(int i=index;i<n-1;i++){
-      if(count==len)
-	return 1;
-      if(ptr[i]->value==(ptr[i+1]->value+1)){
+     int val=ptr[index]->value;
+    for(int i=index+1;i<n;i++){
+      if(ptr[i]->value==val-1){
+	val--;
 	count++;
-	if(i==n-2){
-	  if(count==len) return 1;
-	  else return 0;
-	}
       }
-      else if(ptr[i]->value==ptr[i+1]->value)
+      else if(ptr[i]->value==val){
 	continue;
+      }
       else
 	return 0;
     }
   }
   else{
-    for(int i=index;i<n-1;i++){
-      if(count==len)
-	return 1;
-      if(ptr[i]->value==(ptr[i+1]->value)+1 && compare_suit(*ptr[i],*ptr[i+1],fs)){
+    int val=ptr[index]->value;
+    suit_t s=ptr[index]->suit;
+    if(s!=fs)
+      return 0;
+    for(int i=index+1;i<n;i++){
+      if(ptr[i]->value==val-1 && ptr[i]->suit==s){
+	val--;
 	count++;
-	if(i==n-2){
-	  if(count==len) return 1;
-	  else return 0;
-	}
       }
-      else if(ptr[i]->value==ptr[i+1]->value  && compare_suit(*ptr[i],*ptr[i+1],fs))
+      else if(ptr[i]->value==val-1 && ptr[i]->suit!=s)
+	continue;
+      else if(ptr[i]->value==val)
 	continue;
       else
 	return 0;
-    }
+    }    
   }
+  if(count==len)
+    return 1;
   return 0;
 }
 int is_ace_low_straight_at(deck_t * hand,size_t index,suit_t fs){
