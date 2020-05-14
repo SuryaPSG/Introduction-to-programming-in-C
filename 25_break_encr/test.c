@@ -24,6 +24,8 @@ int decrypt(int * freq,int n){
     }
   }
   max_index=max_index-4;
+  if(max_index<0)
+    max_index+=22;
   return max_index;
 }
 int main(int argc,char **argv){
