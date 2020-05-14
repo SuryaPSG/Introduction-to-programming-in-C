@@ -23,9 +23,8 @@ int decrypt(int * freq,int n){
       mi=i;
     }
   }
-  mi-=4;
-  if(mi<0)
-    mi+=26;
+  mi+=22;
+  mi=mi%26;
   return mi;
 }
 int main(int argc,char **argv){
