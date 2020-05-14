@@ -43,9 +43,6 @@ int main(int argc,char **argv){
     freq_count[i]=0;
   }
   get_count(fp,freq_count);
-  for(int i=0;i<26;i++){
-    printf("%d ",freq_count[i]);
-  }
   printf("\n");
   key=decrypt(freq_count,26);
   printf("%d\n",key);
