@@ -1,4 +1,4 @@
- In the last problem, you saw an implementation of a simple
+In the last problem, you saw an implementation of a simple
 "encryption" program.  In this problem, you will write a program
 that breaks that encryption---that is, it will take as input
 a text file encrypted with the encryption program you just
