@@ -6,8 +6,8 @@ void get_count(FILE * fp,int * frq){
     return;
   int c;
   while((c=fgetc(fp))!=EOF){
-    if(isalpha(c)){
-      c=tolower(c);
+    if (isalpha(c)) {
+      c = tolower(c); 
       c-='a';
       frq[c]+=1;
     }
@@ -16,17 +16,17 @@ void get_count(FILE * fp,int * frq){
 }
 int decrypt(int * freq,int n){
   int max=freq[0];
-  int max_index=0;
+  int mi=0;
   for(int i=1;i<n;i++){
     if(freq[i]>max){
       max=freq[i];
-      max_index=i;
+      mi=i;
     }
   }
-  max_index=max_index-4;
-  if(max_index<0)
-    max_index+=22;
-  return max_index;
+  mi-=4;
+  if(mi<0)
+    mi+=26;
+  return mi;
 }
 int main(int argc,char **argv){
   if(argc!=2){
