@@ -21,6 +21,10 @@ int main(int argc,char ** argv){
     return EXIT_FAILURE;
   }
   FILE *f=fopen(argv[1],"r");
+  if(f==NULL){
+    fprintf(stderr,"FAILURE0");
+    return EXIT_FAILURE;
+  }
   char str[12];
   char matrix[10][10];
   int i=0;
@@ -30,7 +34,7 @@ int main(int argc,char ** argv){
       return EXIT_FAILURE;
     }
     for(int j=0;j<10;j++){
-      if(str[i]=='\n'){
+      if(str[j]=='\n'){
 	fprintf(stderr,"FALIURE2\n");
 	return EXIT_FAILURE;
       }
