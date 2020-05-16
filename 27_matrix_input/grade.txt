@@ -1,10 +1,10 @@
-Grading at Sat May 16 07:04:07 UTC 2020
+Grading at Sat May 16 07:13:20 UTC 2020
 Attempting to compile rotateMatrix.c
 testcase1 passed
 #################################################
 testcase2: NonExistentFile
  (should indicate an error)
-valgrind reported memory errors
+testcase2 passed
 #################################################
 testcase3: blank.txt
  (should indicate an error)
@@ -12,7 +12,7 @@ testcase3 passed
 #################################################
 testcase4: short-line.txt
  (should indicate an error)
-testcase4 failed, your program didn't indicate this is a failure case
+testcase4 passed
 #################################################
 testcase5: short-file.txt
  (should indicate an error)
@@ -50,4 +50,4 @@ testcase10: eof.txt
 Your file matched the expected output
 testcase10 passed
 
-Overall Grade: C
+Overall Grade: A
