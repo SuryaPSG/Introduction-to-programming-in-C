@@ -1,4 +1,4 @@
-Grading at Mon May 18 06:18:11 UTC 2020
+Grading at Mon May 18 06:19:51 UTC 2020
 Attempting to compile encrypt.c
 testcase1:
 your output was incorrect
