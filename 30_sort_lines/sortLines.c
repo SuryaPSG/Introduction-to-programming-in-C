@@ -23,7 +23,7 @@ int main(int argc, char ** argv) {
   size_t sz=0;
   size_t i=0;
   if(argc==1){
-    while(getline(&curr,&sz,stdin)>=0){
+    while(getline(&curr,&sz,stdin)>0){
       lines=realloc(lines,(i+1)*sizeof(*lines));
       lines[i]=curr;
       curr=NULL;
@@ -43,7 +43,7 @@ int main(int argc, char ** argv) {
       FILE *f=fopen(argv[j],"r");
       if(f==NULL)
 	return EXIT_FAILURE;
-      while(getline(&curr,&sz,f)>=0){
+      while(getline(&curr,&sz,f)>0){
 	lines=realloc(lines,(i+1)*sizeof(*lines));
 	lines[i]=curr;
 	curr=NULL;
