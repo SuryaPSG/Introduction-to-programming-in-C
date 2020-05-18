@@ -22,8 +22,11 @@ int main(int argc, char ** argv) {
   char * curr=NULL;
   size_t sz=0;
   size_t i=0;
-  if(argc==1){
-    while(getline(&curr,&sz,stdin)>0){
+  int len=0;
+  if(argc==1){     
+    while((len=getline(&curr,&sz,stdin))>=0){
+      if(len<=0)
+	return EXIT_FAILURE;
       lines=realloc(lines,(i+1)*sizeof(*lines));
       lines[i]=curr;
       curr=NULL;
