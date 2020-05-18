@@ -17,16 +17,13 @@ void sortData(char ** data, size_t count) {
 }
 
 int main(int argc, char ** argv) {  
-  //WRITE YOUR CODE HERE!
-  char ** lines=NULL;
-  char * curr=NULL;
-  size_t sz=0;
-  size_t i=0;
-  int len=0;
-  if(argc==1){     
-    while((len=getline(&curr,&sz,stdin))>=0){
-      if(len<=0)
-	return EXIT_FAILURE;
+  //WRITE YOUR CODE HERE
+  if(argc==1){
+    char ** lines=NULL;
+    char * curr=NULL;
+    size_t sz=0;
+    size_t i=0;
+    while(getline(&curr,&sz,stdin)>=0){
       lines=realloc(lines,(i+1)*sizeof(*lines));
       lines[i]=curr;
       curr=NULL;
@@ -42,12 +39,15 @@ int main(int argc, char ** argv) {
     return EXIT_SUCCESS;
   }
   if(argc>1){
-    for(int j=1;j<argc;j++){
-      FILE *f=fopen(argv[j],"r");
+    for(int k=1;k<argc;k++){
+      FILE *f=fopen(argv[k],"r");
       if(f==NULL)
 	return EXIT_FAILURE;
+      char ** lines=NULL;
+      char * curr=NULL;
+      size_t sz=0;
       size_t i=0;
-      while(getline(&curr,&sz,f)>0){
+      while(getline(&curr,&sz,f)>=0){
 	lines=realloc(lines,(i+1)*sizeof(*lines));
 	lines[i]=curr;
 	curr=NULL;
@@ -60,8 +60,7 @@ int main(int argc, char ** argv) {
 	free(lines[j]);
       }
       free(lines);
-      if(fclose(f)==0)
-	return EXIT_FAILURE;
+      fclose(f);
     }
   }
   return EXIT_SUCCESS;
