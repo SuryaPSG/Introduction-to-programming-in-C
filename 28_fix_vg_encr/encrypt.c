@@ -8,7 +8,7 @@ void encrypt(FILE * f, int key, FILE * outfile){
   size_t sz=0;
   while (getline(&line,&sz, f) >= 0) {
     char * ptr = line;
-    while (*ptr != '\0') {
+    while (*ptr != '\n') {
       int c = *ptr;
       if (isalpha(c)) {
 	c = tolower(c);
