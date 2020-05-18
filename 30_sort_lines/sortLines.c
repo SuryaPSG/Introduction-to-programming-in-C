@@ -43,6 +43,7 @@ int main(int argc, char ** argv) {
       FILE *f=fopen(argv[j],"r");
       if(f==NULL)
 	return EXIT_FAILURE;
+      size_t i=0;
       while(getline(&curr,&sz,f)>0){
 	lines=realloc(lines,(i+1)*sizeof(*lines));
 	lines[i]=curr;
@@ -56,7 +57,6 @@ int main(int argc, char ** argv) {
 	free(lines[j]);
       }
       free(lines);
-      i=0;
       if(fclose(f)==0)
 	return EXIT_FAILURE;
     }
