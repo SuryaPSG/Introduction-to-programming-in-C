@@ -41,8 +41,10 @@ int main(int argc, char ** argv) {
   if(argc>1){
     for(int k=1;k<argc;k++){
       FILE *f=fopen(argv[k],"r");
-      if(f==NULL)
+      if(f==NULL){
+	fprintf(stderr,"No file existed\n");
 	return EXIT_FAILURE;
+      }
       char ** lines=NULL;
       char * curr=NULL;
       size_t sz=0;
