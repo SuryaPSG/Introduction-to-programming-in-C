@@ -56,6 +56,7 @@ int main(int argc, char ** argv) {
 	free(lines[j]);
       }
       free(lines);
+      i=0;
       if(fclose(f)==0)
 	return EXIT_FAILURE;
     }
