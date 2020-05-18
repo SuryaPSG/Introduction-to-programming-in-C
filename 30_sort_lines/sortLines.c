@@ -29,6 +29,8 @@ int main(int argc, char ** argv) {
       curr=NULL;
       i++;
     }
+    if(*lines[0]='\n')
+      return EXIT_FAILURE;
     free(curr);
     sortData(lines,i);
     for(int j=0;j<i;j++){
