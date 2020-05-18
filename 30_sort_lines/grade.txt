@@ -1,10 +1,22 @@
-Grading at Mon May 18 17:07:13 UTC 2020
+Grading at Mon May 18 17:08:31 UTC 2020
 Attempting to compile sortLines.c
-sortLines.c: In function ‘main’:
-sortLines.c:32:5: error: suggest parentheses around assignment used as truth value [-Werror=parentheses]
-     if(*lines[0]='\n')
-     ^
-cc1: all warnings being treated as errors
-The code did not compile!
+#################################################
+testcase1:
+testcase1 failed, your program didn't indicate this is a failure case
+#################################################
+testcase2:
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
+#################################################
+testcase3:
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
+#################################################
+testcase4:
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 
-Overall Grade: F
+Overall Grade: B
