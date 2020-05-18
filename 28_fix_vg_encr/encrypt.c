@@ -46,6 +46,10 @@ int main(int argc, char ** argv) {
   strcpy(outFileName,argv[2]);
   strcat(outFileName,".enc");
   FILE * outFile = fopen(outFileName, "w");
+  if(outFile==NULL){
+    perror("Couldn't open file");
+    return EXIT_FAILURE;
+  }
   encrypt(f,key, outFile);
   if (fclose(outFile) != 0) {
     perror("Failed to close the input file!");
