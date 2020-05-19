@@ -119,7 +119,7 @@ int get_count(board_t * b, int x, int y,int nx,int ny){
 }
 int countMines(board_t * b, int x, int y) {
   int count=0;
-  if(IS_MINE(b->board[x][y]))
+  if(IS_MINE(b->board[y][x]))
     count++;
   if(y==0){
     if(x==0)
