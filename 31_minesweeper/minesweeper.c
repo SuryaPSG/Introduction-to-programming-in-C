@@ -44,10 +44,9 @@ board_t * makeBoard(int w, int h, int numMines) {
   board_t *brd=malloc(sizeof(*brd));
   brd->width=w;
   brd->height=h;
-  brd->board=NULL;
+  brd->board=malloc(h*sizeof(*(brd->board)));
   brd->totalMines=numMines;
   for(int i=0;i<h;i++){
-    brd->board=realloc(brd->board,(i+1)*sizeof(*(brd->board)));
     int *arr=malloc(w*sizeof(*arr));
     for(int j=0;j<w;j++){
       arr[j]=UNKNOWN;
@@ -140,7 +139,7 @@ int countMines(board_t * b, int x, int y) {
   else if(x==(b->width)-1)
     return get_count(b,x-1,y-1,2,3);
   else
-    return get_count(b,x,y,3,3);
+    return get_count(b,x-1,y-1,3,3);
   return 0;
 }
 int click (board_t * b, int x, int y) {
