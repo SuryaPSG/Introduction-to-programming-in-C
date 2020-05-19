@@ -107,7 +107,7 @@ void printBoard(board_t * b) {
   }
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
-/*int get_count(board_t * b, int x, int y,int nx,int ny){
+int get_count(board_t * b, int x, int y,int nx,int ny){
   int count=0;
   for(int i=y;i<y+ny;i++){
     for(int j=x;j<x+nx;j++){
@@ -117,23 +117,31 @@ void printBoard(board_t * b) {
     }
   }
   return count;
-  }*/
+}
 int countMines(board_t * b, int x, int y) {
-  int count = 0;
-  for(int i = -1; i <= 1; ++i){
-    for(int j = -1; j <= 1; ++j){
-      int currentX = x + i;
-      int currentY = y + j;
-      if(!(currentX == x && currentY == y)){
-	if(currentX >= 0 && currentY >= 0 && currentX < b->width && currentY < b->height){
-	  if(IS_MINE(b->board[currentY][currentX])){
-	    ++count;
-	  }
-	}
-      }
-    }
+  if(y==0){
+    if(x==0)
+      return get_count(b,x,y,2,2);
+    else if(x==(b->width)-1)
+      return get_count(b,x-1,y,2,2);
+    else
+      return get_count(b,x-1,y,3,2);
   }
-  return count;
+  else if(y==(b->height)-1){
+    if(x==0)
+      return get_count(b,x,y-1,2,2);
+    else if(x==(b->width)-1)
+      return get_count(b,x-1,y-1,2,2);
+    else
+      return get_count(b,x-1,y-1,3,2);
+  }
+  else if(x==0)
+    return get_count(b,x,y-1,2,3);
+  else if(x==(b->width)-1)
+    return get_count(b,x-1,y-1,2,3);
+  else
+    return get_count(b,x,y,3,3);
+  return 0;
 }
 int click (board_t * b, int x, int y) {
   if (x < 0 || x >= b->width ||
