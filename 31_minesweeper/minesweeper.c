@@ -41,8 +41,20 @@ void addRandomMine(board_t * b) {
 }
 
 board_t * makeBoard(int w, int h, int numMines) {
-  //WRITE ME!
-  return NULL;
+  board_t *brd=malloc(sizeof(*brd));
+  brd->board=malloc(h*sizeof(*(brd->board)));
+  brd->width=w;
+  brd->height=h;
+  brd->totalMines=numMines;
+  for(int i=0;i<h;i++){
+    int *arr=malloc(w*sizeof(*arr));
+    for(int j=0;j<w;j++){
+      arr[j]=UNKNOWN;
+    }
+    brd->board[i]=arr;
+  }
+  addRandomMine(brd);
+  return brd;
 }
 void printBoard(board_t * b) {    
   int found = 0;
@@ -94,8 +106,43 @@ void printBoard(board_t * b) {
   }
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
+int get_count(board_t * b, int x, int y,int nx,int ny){
+  int count=0;
+  for(int i=y;i<y+ny;i++){
+    for(int j=x;j<x+nx;j++){
+      if(IS_MINE(b->board[i][j])){
+	count++;
+      }
+    }
+  }
+  return count;
+}
 int countMines(board_t * b, int x, int y) {
-  //WRITE ME!
+  if(y==0){
+    if(x==0)
+      return get_count(b,x,y,2,2);
+    else if(x==(b->width)-1)
+      return get_count(b,x-1,y,2,2);
+    else
+      return get_count(b,x-1,y,3,2);
+  }
+  else if(y==(b->height)-1){
+    if(x==0)
+      return get_count(b,x,y-1,2,2);
+    else if(x==(b->width)-1)
+      return get_count(b,x-1,y-1,2,2);
+    else
+      return get_count(b,x-1,y-1,3,2);
+  }
+  else if(x==0){
+    return get_count(b,x,y-1,2,3);
+  }
+  else if(x==(b->width)-1){
+    return get_count(b,x-1,y-1,2,3);
+  }
+  else{
+    return get_count(b,x-1,y-1,3,3);
+  }
   return 0;
 }
 int click (board_t * b, int x, int y) {
@@ -119,11 +166,25 @@ int click (board_t * b, int x, int y) {
 
 int checkWin(board_t * b) {
   //WRITE ME!
-  return 0;
+  int h=b->height;
+  int w=b->width;
+  for(int i=0;i<h;i++){
+    for(int j=0;j<w;j++){
+      if((b->board[i][j])==UNKNOWN)
+	return 0;
+    }
+  }
+  return 1;
 }
 
 void freeBoard(board_t * b) {
   //WRITE ME!
+  int h=b->height;
+  for(int i=0;i<h;i++){
+    free(b->board[i]);
+  }
+  free(b->board);
+  free(b);
 }
 
 int readInt(char ** linep, size_t * lineszp) {
