@@ -53,7 +53,9 @@ board_t * makeBoard(int w, int h, int numMines) {
     }
     brd->board[i]=arr;
   }
-  addRandomMine(brd);
+  for(int i=0 ;i<numMines;i++){
+    addRandomMine(brd);
+  }
   return brd;
 }
 void printBoard(board_t * b) {    
@@ -118,31 +120,31 @@ int get_count(board_t * b, int x, int y,int nx,int ny){
   return count;
 }
 int countMines(board_t * b, int x, int y) {
-  int count=0;
-  if(IS_MINE(b->board[y][x]))
-    count++;
+  //int count=0;
+  //if(IS_MINE(b->board[y][x]))
+  //count++;
   if(y==0){
     if(x==0)
-      return get_count(b,x,y,2,2)-count;
+      return get_count(b,x,y,2,2);
     else if(x==(b->width)-1)
-      return get_count(b,x-1,y,2,2)-count;
+      return get_count(b,x-1,y,2,2);
     else
-      return get_count(b,x-1,y,3,2)-count;
+      return get_count(b,x-1,y,3,2);
   }
   else if(y==(b->height)-1){
     if(x==0)
-      return get_count(b,x,y-1,2,2)-count;
+      return get_count(b,x,y-1,2,2);
     else if(x==(b->width)-1)
-      return get_count(b,x-1,y-1,2,2)-count;
+      return get_count(b,x-1,y-1,2,2);
     else
-      return get_count(b,x-1,y-1,3,2)-count;
+      return get_count(b,x-1,y-1,3,2);
   }
   else if(x==0)
-    return get_count(b,x,y-1,2,3)-count;
+    return get_count(b,x,y-1,2,3);
   else if(x==(b->width)-1)
-    return get_count(b,x-1,y-1,2,3)-count;
+    return get_count(b,x-1,y-1,2,3);
   else
-    return get_count(b,x-1,y-1,3,3)-count;
+    return get_count(b,x-1,y-1,3,3);
   return 0;
 }
 int click (board_t * b, int x, int y) {
