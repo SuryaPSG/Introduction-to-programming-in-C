@@ -118,28 +118,31 @@ int get_count(board_t * b, int x, int y,int nx,int ny){
   return count;
 }
 int countMines(board_t * b, int x, int y) {
+  int count=0;
+  if(IS_MINE(b->board[x][y]))
+    count++;
   if(y==0){
     if(x==0)
-      return get_count(b,x,y,2,2);
+      return get_count(b,x,y,2,2)-count;
     else if(x==(b->width)-1)
-      return get_count(b,x-1,y,2,2);
+      return get_count(b,x-1,y,2,2)-count;
     else
-      return get_count(b,x-1,y,3,2);
+      return get_count(b,x-1,y,3,2)-count;
   }
   else if(y==(b->height)-1){
     if(x==0)
-      return get_count(b,x,y-1,2,2);
+      return get_count(b,x,y-1,2,2)-count;
     else if(x==(b->width)-1)
-      return get_count(b,x-1,y-1,2,2);
+      return get_count(b,x-1,y-1,2,2)-count;
     else
-      return get_count(b,x-1,y-1,3,2);
+      return get_count(b,x-1,y-1,3,2)-count;
   }
   else if(x==0)
-    return get_count(b,x,y-1,2,3);
+    return get_count(b,x,y-1,2,3)-count;
   else if(x==(b->width)-1)
-    return get_count(b,x-1,y-1,2,3);
+    return get_count(b,x-1,y-1,2,3)-count;
   else
-    return get_count(b,x-1,y-1,3,3);
+    return get_count(b,x-1,y-1,3,3)-count;
   return 0;
 }
 int click (board_t * b, int x, int y) {
