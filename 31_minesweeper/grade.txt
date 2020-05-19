@@ -1,17 +1,20 @@
-Grading at Tue May 19 17:10:52 UTC 2020
+Grading at Tue May 19 17:13:08 UTC 2020
 Attempting to compile minesweeper.c
-minesweeper.c: In function ‘makeBoard’:
-minesweeper.c:49:24: error: passing argument 1 of ‘realloc’ makes pointer from integer without a cast [-Werror=int-conversion]
-     brd->board=realloc((i+1)*sizeof(*(brd->board)));
-                        ^
-In file included from minesweeper.c:2:0:
-/usr/include/stdlib.h:480:14: note: expected ‘void *’ but argument is of type ‘long unsigned int’
- extern void *realloc (void *__ptr, size_t __size)
-              ^
-minesweeper.c:49:16: error: too few arguments to function ‘realloc’
-     brd->board=realloc((i+1)*sizeof(*(brd->board)));
-                ^
-cc1: all warnings being treated as errors
-The code did not compile!
+#################################################
+testcase1:
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
+#################################################
+testcase2:
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
+#################################################
+testcase3:
+Your output is incorrect
+#################################################
+testcase4:
+Your output is incorrect
 
 Overall Grade: F
