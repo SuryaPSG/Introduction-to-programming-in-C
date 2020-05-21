@@ -1,0 +1,95 @@
+Grading at Thu May 21 06:10:44 UTC 2020
+Attempting to compile:
+In file included from kv.c:4:0:
+kv.h:5:8: error: struct has no members [-Werror=pedantic]
+ struct _kvpair_t { 
+        ^
+kv.h:11:8: error: struct has no members [-Werror=pedantic]
+ struct _kvarray_t { 
+        ^
+kv.c: In function ‘splitPairs’:
+kv.c:15:8: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘key’
+   pair ->key=str;
+        ^
+kv.c:16:8: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘value’
+   pair ->value=value1;
+        ^
+kv.c: In function ‘readKVs’:
+kv.c:34:11: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+   kv_array->size = 0;
+           ^
+kv.c:35:11: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+   kv_array->arr=NULL;
+           ^
+kv.c:39:13: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     kv_array->arr=realloc(kv_array->arr,(kv_array->size+1)*sizeof(*kv_array->arr));
+             ^
+kv.c:39:35: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     kv_array->arr=realloc(kv_array->arr,(kv_array->size+1)*sizeof(*kv_array->arr));
+                                   ^
+kv.c:39:50: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+     kv_array->arr=realloc(kv_array->arr,(kv_array->size+1)*sizeof(*kv_array->arr));
+                                                  ^
+kv.c:39:76: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     kv_array->arr=realloc(kv_array->arr,(kv_array->size+1)*sizeof(*kv_array->arr));
+                                                                            ^
+kv.c:40:13: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     kv_array->arr[kv_array->size]=curr_pair;
+             ^
+kv.c:40:27: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+     kv_array->arr[kv_array->size]=curr_pair;
+                           ^
+kv.c:41:13: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+     kv_array->size ++;
+             ^
+kv.c: In function ‘freeKVs’:
+kv.c:53:23: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+   for(int i=0 ;i<pairs->size;i++){
+                       ^
+kv.c:55:15: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     free(pairs->arr[i]->key);
+               ^
+kv.c:56:15: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     free(pairs->arr[i]);
+               ^
+kv.c:58:13: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+   free(pairs->arr);
+             ^
+kv.c: In function ‘printKVs’:
+kv.c:65:22: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+   for(int i=0;i<pairs->size;i++){
+                      ^
+kv.c:66:20: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     curr_pair=pairs->arr[i];
+                    ^
+kv.c:67:50: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘key’
+     printf("key = '%s' value = '%s'\n" ,curr_pair->key, curr_pair->value);
+                                                  ^
+kv.c:67:66: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘value’
+     printf("key = '%s' value = '%s'\n" ,curr_pair->key, curr_pair->value);
+                                                                  ^
+kv.c: In function ‘lookupValue’:
+kv.c:74:22: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘size’
+   for(int i=0;i<pairs->size;i++){
+                      ^
+kv.c:75:20: error: ‘kvarray_t {aka struct _kvarray_t}’ has no member named ‘arr’
+     curr_pair=pairs->arr[i];
+                    ^
+kv.c:76:27: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘key’
+     if (! strcmp(curr_pair->key,key)) return  curr_pair->value;
+                           ^
+kv.c:76:56: error: ‘kvpair_t {aka struct _kvpair_t}’ has no member named ‘value’
+     if (! strcmp(curr_pair->key,key)) return  curr_pair->value;
+                                                        ^
+cc1: all warnings being treated as errors
+In file included from 59_kvs.test_main.c:4:0:
+kv.h:5:8: error: struct has no members [-Werror=pedantic]
+ struct _kvpair_t { 
+        ^
+kv.h:11:8: error: struct has no members [-Werror=pedantic]
+ struct _kvarray_t { 
+        ^
+cc1: all warnings being treated as errors
+The code did not compile!
+
+Overall Grade: F
