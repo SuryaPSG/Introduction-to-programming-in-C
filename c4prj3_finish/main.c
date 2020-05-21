@@ -60,7 +60,7 @@ int main(int argc, char ** argv) {
   int win_array[n_hands+1];
   for(int u=0;u<n_hands+1;u++) win_array[u]=0;
   // Do each Monte Carlo trial (repeat num_trials times)
-  int num_trials = 10000;
+  int num_trials = 100000;
   if (argc ==3) num_trials=atoi(argv[2]);
   for(int i=0;i<num_trials;i++){
     //Shuffle the deck of remaining cards
