@@ -1,0 +1,11 @@
+Grading at Thu May 21 16:22:13 UTC 2020
+Compiling deck.c -> deck.o
+Compiling eval.c -> eval.o
+eval.c: In function ‘get_match_counts’:
+eval.c:249:10: error: implicit declaration of function ‘com1’ [-Werror=implicit-function-declaration]
+       if(com1(*(hand->cards[j]),x)) count ++;
+          ^
+cc1: all warnings being treated as errors
+Compilation of eval.c failed
+
+Overall Grade: F
