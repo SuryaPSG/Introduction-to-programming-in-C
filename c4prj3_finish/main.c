@@ -8,7 +8,7 @@
 #include "future.h"
 #include "input.h"
 
-int win_hand(deck_t ** decks,int n_hands){
+int win_hand(deck_t ** deck_array,int n_hands){
   int w[n_hands+1];
   for(int u=0;u<n_hands+1;u++) w[u]=0;
   int v=0;
