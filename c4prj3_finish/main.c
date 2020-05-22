@@ -8,27 +8,33 @@
 #include "future.h"
 #include "input.h"
 
-int win_hand(deck_t ** decks,int n_decks){
-  deck_t * maxDeck = decks[0];
-  int deckIndex = 0;
-  int result=0;
-  // First find the maxCeck
-  for (int i = 0; i < n_decks; i++){
-    // Compare decks is something like O(n log n)
-    // and we're doing that for decks -1 elements
-    // -1 is maxDeck > decks[i]
-     result = compare_hands(maxDeck, decks[i]);
-    if (result != 1 && i != 0){
-      if (result == 0){
-	// do some tie specific stuff
-	return -1;
-		}
-      // Otherwise, keep adjusting max....
-      maxDeck = decks[i];
-      deckIndex = i;
+int win_hand(deck_t ** decks,int n_hands){
+  int w[n_hands+1];
+  for(int u=0;u<n_hands+1;u++) w[u]=0;
+  int v=0;
+  for(int i =0;i<n_hands-1;i++){
+    for (int j=i+1;j<n_hands;j++){
+      // print_hand(deck_array[i]);
+      //            print_hand(deck_array[j]);
+      // printf("\n");
+      v=compare_hands(deck_array[i],deck_array[j]);
+      if(v>0) w[i]++;
+      else if (v<0) w[j]++;
+      else w[n_hands]++;
     }
   }
-  return deckIndex;
+  unsigned largest= 0;
+  for(int x=0;x<n_hands+1;x++){
+    if(w[x] > w[largest])largest=x;
+  }
+  int count=0;
+  if(w[n_hands]>0){
+    for(int x=0;x<n_hands+1;x++){
+      if(w[x] == w[largest]) count++;
+    }
+  }
+  if(count>1) return n_hands;
+  return  largest;  
 }
 
 int main(int argc, char ** argv) {
