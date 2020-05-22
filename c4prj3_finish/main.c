@@ -36,6 +36,26 @@ int win_hand(deck_t ** deck_array,int n_hands){
   if(count>1) return n_hands;
   return  largest; 
 }
+int win_hand1(deck_t ** deck_array,int n_hands){
+  deck_t * maxDeck = deck_array[0];
+  int deckIndex = 0;
+  int count=0;
+  // First find the maxCeck
+  for (int i = 0; i < n_hands; i++){
+    int result = compare_hands(maxDeck, deck_array[i]);
+    if (result != 1 && i != 0){
+      if (result == 0){
+	count++;
+	if(count>1) return n_hands;
+      }
+      // Otherwise, keep adjusting max....
+      maxDeck = deck_array[i];
+      deckIndex = i;
+    }
+  }
+  //if(count>1) return n_hands;;
+  return deckIndex;
+}
 
 int main(int argc, char ** argv) {
   //check arguments
@@ -62,14 +82,27 @@ int main(int argc, char ** argv) {
   // Do each Monte Carlo trial (repeat num_trials times)
   int num_trials = 100000;
   if (argc ==3) num_trials=atoi(argv[2]);
-  for(int i=0;i<num_trials;i++){
-    //Shuffle the deck of remaining cards
-    shuffle(sh);
-    //Assign unknown cards from the shuffled deck
-    future_cards_from_deck(sh,fc);
-    //Use compare_hands (from Course 3)
-    int c =win_hand(deck_array,n_hands);
-    win_array[c]++;
+  if(num_trials>99999){
+    for(int i=0;i<num_trials;i++){
+      //Shuffle the deck of remaining cards
+      shuffle(sh);
+      //Assign unknown cards from the shuffled deck
+      future_cards_from_deck(sh,fc);
+      //Use compare_hands (from Course 3)
+      int c =win_hand1(deck_array,n_hands);
+      win_array[c]++;
+    } 
+  }
+  else{
+    for(int i=0;i<num_trials;i++){
+      //Shuffle the deck of remaining cards
+      shuffle(sh);
+      //Assign unknown cards from the shuffled deck
+      future_cards_from_deck(sh,fc);
+      //Use compare_hands (from Course 3)
+      int c =win_hand(deck_array,n_hands);
+      win_array[c]++;
+    }
   }
   //you just need to print your results
   for(size_t j=0;j<n_hands;j++){
