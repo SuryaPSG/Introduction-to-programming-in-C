@@ -14,18 +14,17 @@ int win_hand(deck_t ** deck_array,int n_hands){
   int count=0;
   // First find the maxCeck
   for (int i = 0; i < n_hands; i++){
-    int result = compare_hands(maxDeck, deck_array[i]);
-    if (result != 1 && i != 0){
-      if (result == 0){
-	count++;
-	if(count>1) return n_hands;
-      }
-      // Otherwise, keep adjusting max....
+    // Compare decks is something like O(n log n)
+    // and we're doing that for decks -1 elements
+    if (compare_hands(maxDeck, deck_array[i]) == 1 && i != 0){
       maxDeck = deck_array[i];
       deckIndex = i;
     }
+    if (compare_hands(maxDeck, deck_array[i]) == 0 && i != 0){
+      count++;
+      if(count>1) return n_hands;
+    }
   }
-  //if(count>1) return n_hands;;
   return deckIndex;
 }
 
