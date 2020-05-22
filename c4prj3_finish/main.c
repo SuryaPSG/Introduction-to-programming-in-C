@@ -18,13 +18,14 @@ int win_hand(deck_t ** deck_array,int n_hands){
     if (result != 1 && i != 0){
       if (result == 0){
 	count++;
+	if(count>1) return n_hands;
       }
       // Otherwise, keep adjusting max....
       maxDeck = deck_array[i];
       deckIndex = i;
     }
   }
-  if(count>1) return n_hands;;
+  //if(count>1) return n_hands;;
   return deckIndex;
 }
 
